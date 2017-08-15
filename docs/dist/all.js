@@ -64,6 +64,8 @@ $(function () {
             this.camera.position.z = this.cameraZ;
             this.camera.lookAt({ x: this.cameraLX, y: 0, z: this.cameraLZ });
 
+            this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
+
             // this.controls = new THREE.TrackballControls(this.camera);
             // this.controls.rotateSpeed = 1.0;
             // this.controls.zoomSpeed = 1.2;

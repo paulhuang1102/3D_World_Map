@@ -62,14 +62,9 @@ $(function() {
             this.camera.position.z = this.cameraZ;
             this.camera.lookAt({ x: this.cameraLX, y: 0, z: this.cameraLZ });
 
-            // this.controls = new THREE.TrackballControls(this.camera);
-            // this.controls.rotateSpeed = 1.0;
-            // this.controls.zoomSpeed = 1.2;
-            // this.controls.panSpeed = 0.8;
-            // this.controls.noZoom = false;
-            // this.controls.noPan = false;
-            // this.controls.staticMoving = true;
-            // this.controls.dynamicDampingFactor = 0.3;
+            this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
+
+
 
         },
 
@@ -151,32 +146,32 @@ $(function() {
             this.scene.add(plane);
         },
 
-        setCameraPosition: function(x, y, z, lx, lz) {
-            this.cameraX = x;
-            this.cameraY = y;
-            this.cameraZ = z;
-            this.cameraLX = lx;
-            this.cameraLZ = lz;
-        },
+        // setCameraPosition: function(x, y, z, lx, lz) {
+        //     this.cameraX = x;
+        //     this.cameraY = y;
+        //     this.cameraZ = z;
+        //     this.cameraLX = lx;
+        //     this.cameraLZ = lz;
+        // },
 
-        moveCamera: function() {
-            let speed = 0.2;
-            let targetX = (this.cameraX = this.camera.position.x) * speed;
-            let targetY = (this.cameraY = this.camera.position.y) * speed;
-            let targetZ = (this.cameraZ = this.camera.position.z) * speed;
-
-            this.camera.position.x += targetX;
-            this.camera.position.y += targetY;
-            this.camera.position.z += targetZ;
-            this.camera.lookAt({ x: this.cameraLX, y: 0, z: this.cameraLZ });
-        },
+        // moveCamera: function() {
+        //     let speed = 0.2;
+        //     let targetX = (this.cameraX = this.camera.position.x) * speed;
+        //     let targetY = (this.cameraY = this.camera.position.y) * speed;
+        //     let targetZ = (this.cameraZ = this.camera.position.z) * speed;
+        //
+        //     this.camera.position.x += targetX;
+        //     this.camera.position.y += targetY;
+        //     this.camera.position.z += targetZ;
+        //     this.camera.lookAt({ x: this.cameraLX, y: 0, z: this.cameraLZ });
+        // },
 
         animate: function() {
-            if (this.cameraX !== this.camera.position.x ||
-                this.cameraY !== this.camera.position.y ||
-                this.cameraZ !== this.camera.position.z) {
-                this.moveCamera();
-            }
+            // if (this.cameraX !== this.camera.position.x ||
+            //     this.cameraY !== this.camera.position.y ||
+            //     this.cameraZ !== this.camera.position.z) {
+            //     this.moveCamera();
+            // }
             let vector = new THREE.Vector3(mouse.x, mouse.y, 1);
             let raycaster = new THREE.Raycaster();
             raycaster.setFromCamera(vector, this.camera);
@@ -224,7 +219,7 @@ $(function() {
     };
 
     function init() {
-        $.when($.getJSON('assets/countries.json')).then((data) => {
+        $.when($.getJSON('data/countries.json')).then((data) => {
             console.log(data);
             worldMap = new Map();
             worldMap.init_d3();
