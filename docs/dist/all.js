@@ -221,7 +221,7 @@ $(function () {
     };
 
     function init() {
-        $.when($.getJSON('data/countries.json')).then(function (data) {
+        $.when($.getJSON('https://api.myjson.com/bins/1clg7t')).then(function (data) {
             console.log(data);
             worldMap = new Map();
             worldMap.init_d3();
