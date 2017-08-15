@@ -44,7 +44,7 @@ $(function() {
                 this.renderer = new THREE.WebGLRenderer({
                     antialias: true
                 });
-                this.renderer.setClearColor(0xd8d8d8);
+                this.renderer.setClearColor(0x888888);
             } else {
                 this.renderer = new THREE.CanvasRenderer();
             }
@@ -112,25 +112,25 @@ $(function() {
         },
 
         getColor: function(data) {
-            // if (data.name === 'United Kingdom') {
-            //     return 0x46a3ff
-            // }
-            //
-            //
-            // if (data.name === 'Canada') {
-            //     return 0xff3b3b
-            //
-            // }
-            //
-            // return 0xd8d8d8;
-            let multiplier = 0;
-
-            for (let i = 0; i < 3; i++) {
-                multiplier += data.iso_a3.charCodeAt(i);
+            switch (data.name) {
+                case 'United Kingdom':
+                    return 0x46a3ff;
+                case 'Canada':
+                    return 0xff3b3b;
+                case 'Thailand':
+                    return 0x0dff0d;
+                default:
+                    return 0xd8d8d8;
             }
 
-            multiplier = (1.0 / 366) * multiplier;
-            return multiplier * 0xffffff
+            // let multiplier = 0;
+            //
+            // for (let i = 0; i < 3; i++) {
+            //     multiplier += data.iso_a3.charCodeAt(i);
+            // }
+            //
+            // multiplier = (1.0 / 366) * multiplier;
+            // return multiplier * 0xffffff
         },
 
         addLight: function(x, y, z, intensity, color) {
