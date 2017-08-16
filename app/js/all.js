@@ -63,9 +63,7 @@ $(function() {
             this.camera.lookAt({ x: this.cameraLX, y: 0, z: this.cameraLZ });
 
             this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
-
-
-
+            
         },
 
         addCountry: function(data) {
@@ -245,6 +243,11 @@ $(function() {
 
             onFrame(tick);
             main.addEventListener('mousemove', mouseMove, false);
+            window.addEventListener('resize', () => {
+                worldMap.camera.aspect = main.offsetWidth / main.offsetHeight;
+                worldMap.camera.updateProjectionMatrix();
+                worldMap.renderer.setSize(main.offsetWidth, main.offsetHeight)
+            })
         });
 
     }
